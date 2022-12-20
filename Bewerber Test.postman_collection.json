@@ -1,0 +1,443 @@
+{
+	"info": {
+		"_postman_id": "f9d78dab-92bb-4ba7-b31f-7b58eca8cdf6",
+		"name": "Bewerber Test",
+		"description": "http://localhost/sugar_11_2/rest/v11_14/bulk",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"CRMotoken\", jsonData.access_token);",
+							"",
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"grant_type\":\"password\",\n\"client_id\":\"sugar\",\n\"client_secret\":\"\",\n\"username\":\"{{user}}\",\n\"password\":\"{{pass}}\",\n\"platform\":\"base\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sturl}}/rest/{{version}}/oauth2/token",
+					"host": [
+						"{{sturl}}"
+					],
+					"path": [
+						"rest",
+						"{{version}}",
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accounts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "OAuth-Token",
+						"value": "{{CRMotoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sturl}}/rest/{{version}}/Accounts",
+					"host": [
+						"{{sturl}}"
+					],
+					"path": [
+						"rest",
+						"{{version}}",
+						"Accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contacts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "OAuth-Token",
+						"value": "{{CRMotoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sturl}}/rest/{{version}}/Contacts",
+					"host": [
+						"{{sturl}}"
+					],
+					"path": [
+						"rest",
+						"{{version}}",
+						"Contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contact by First Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "OAuth-Token",
+						"value": "{{CRMotoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"filter\": [\r\n        {\r\n            \"first_name\": \"Jan\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sturl}}/rest/{{version}}/Contacts",
+					"host": [
+						"{{sturl}}"
+					],
+					"path": [
+						"rest",
+						"{{version}}",
+						"Contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calls Related to Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "OAuth-Token",
+						"value": "{{CRMotoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sturl}}/rest/{{version}}/Contacts",
+					"host": [
+						"{{sturl}}"
+					],
+					"path": [
+						"rest",
+						"{{version}}",
+						"Contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Contact Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "OAuth-Token",
+						"value": "{{CRMotoken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{sturl}}/rest/{{version}}/Contacts/bbcc73c4-0672-11ed-97ae-02f8a092ac8c",
+					"host": [
+						"{{sturl}}"
+					],
+					"path": [
+						"rest",
+						"{{version}}",
+						"Contacts",
+						"bbcc73c4-0672-11ed-97ae-02f8a092ac8c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Contact Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "OAuth-Token",
+						"value": "{{CRMotoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"last_name\": \"LastName_update contact\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sturl}}/rest/{{version}}/Contacts/bbcc73c4-0672-11ed-97ae-02f8a092ac8c",
+					"host": [
+						"{{sturl}}"
+					],
+					"path": [
+						"rest",
+						"{{version}}",
+						"Contacts",
+						"bbcc73c4-0672-11ed-97ae-02f8a092ac8c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Custom BewerberAPI",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "OAuth-Token",
+						"value": "{{CRMotoken}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\": \"SELECT contacts.id, email_addr_bean_rel.email_address_id FROM contacts LEFT JOIN email_addr_bean_rel ON contacts.id = email_addr_bean_rel.bean_id AND email_addr_bean_rel.bean_module = 'Contacts' AND email_addr_bean_rel.primary_address = 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sturl}}/rest/{{version}}/BewerberAPI",
+					"host": [
+						"{{sturl}}"
+					],
+					"path": [
+						"rest",
+						"{{version}}",
+						"BewerberAPI"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.environment.set(\"RandomNumber\", _.random(1,100));"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "sturl",
+			"value": "https://sg-bewerbung.demo.sugarcrm.eu"
+		},
+		{
+			"key": "user",
+			"value": "bewerber",
+			"type": "default"
+		},
+		{
+			"key": "pass",
+			"value": "Sugar2",
+			"type": "default"
+		},
+		{
+			"key": "CRMotoken",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "version",
+			"value": "v11_17"
+		}
+	]
+}
