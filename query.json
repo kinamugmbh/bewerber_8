@@ -1,0 +1,3 @@
+{
+  "query": "SELECT contacts.id, contacts.first_name, contacts.last_name, accounts.name, email_addresses.email_address FROM contacts LEFT JOIN email_addr_bean_rel ON contacts.id = email_addr_bean_rel.bean_id AND email_addr_bean_rel.bean_module = 'Contacts' AND email_addr_bean_rel.primary_address = 1 JOIN email_addresses ON email_addresses.id = email_addr_bean_rel.email_address_id JOIN accounts_contacts ON accounts_contacts.contact_id = contacts.id JOIN accounts ON accounts.id = accounts_contacts.account_id WHERE accounts.name = 'Sobrudt Security Systems'"
+}
